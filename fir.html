@@ -9,11 +9,17 @@
  </head>
 
  <body>
-	<h2>git 고고!!</h2>
-	<? include 'inc/header.html' ?>
-	<div class="mimg">
-		<div>이미지01</div>
-		<div>이미지02</div>
+	<div id="app">
+		{{message}}
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				message: 'hello vue.js'
+			}
+		});
+	</script>
  </body>
 </html>
