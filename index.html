@@ -1,0 +1,109 @@
+<? include 'gd/inc/top.html' ?>
+<body class="mainp">
+	<? include 'gd/inc/header.html' ?>
+	<div class="mimg_wrap">
+		<div class="mimg">
+			<img src="/gd/img/open.png" alt="" class="open"/>
+			<img src="/gd/img/mtext.png" alt="" class="mtext pc_view"/>
+			<img src="/gd/img/mtext_mo.png" alt="" class="mtext mo_view"/>
+		</div>
+	</div>
+	<div class="mprem">
+		<div class="mprem_wrap">
+			<ul class="cont cycle-slideshow" id="cycle-1"
+			data-cycle-swipe="true"
+			data-cycle-slides=".mcont"
+			data-cycle-timeout="3000"
+			data-cycle-fx="carousel"
+			data-cycle-carousel-visible=""
+			data-cycle-carousel-vertical="false"
+			data-cycle-prev=".arrow_l"
+			data-cycle-next=".arrow_r"
+			data-cycle-carousel-fluid="false"
+			data-allow-wrap="false"
+			data-cycle-speed="1000"
+			data-cycle-manual-speed="1000"
+			data-cycle-easing="easeInOutQuart"
+			>
+				<li class="mcont">
+					<img src="/gd/img/mprem01.jpg" alt=""/>
+					<div class="no">01</div>
+					<dl>
+						<dt>교통특권</dt>
+						<dd>걸어서 누리는 지하철 5호선 강동역과 길동역<br/>
+						올림픽대로, 천호대로, 상일IC 등 사통팔달 교통망</dd>
+					</dl>
+				</li>
+				<li class="mcont">
+					<img src="/gd/img/mprem02.jpg" alt=""/>
+					<div class="no">02</div>
+					<dl>
+						<dt>생활특권</dt>
+						<dd>현대백화점, 이마트, 롯데시네마 등 생활문화시설<br/>
+						강동성심병원, 천동초, 동신중 등 다양한 인프라</dd>
+					</dl>
+				</li>
+				<li class="mcont">
+					<img src="/gd/img/mprem03.jpg" alt=""/>
+					<div class="no">03</div>
+					<dl>
+						<dt>자연특권</dt>
+						<dd>길동자연생태공원, 일자산허브천문공원 등 자연환경<br/>
+						올림픽공원과 한강을 편리하게 누리는 힐링주거지</dd>
+					</dl>
+				</li>
+				<li class="mcont">
+					<img src="/gd/img/mprem04.jpg" alt=""/>
+					<div class="no">04</div>
+					<dl>
+						<dt>미래특권</dt>
+						<dd>1만2천여 세대 둔촌주공 재건축과 천호뉴타운,<br/>
+						천호·성내 재정비촉진지구 등 개발에 따른 수혜지</dd>
+					</dl>
+				</li>
+			</ul>
+			<div class="pager_wrap">
+				<img src="/gd/img/marrow_l.png" alt="" class="arrow arrow_l"/>
+				<ul class="cycle-slideshow" id="cycle-2"
+				data-cycle-swipe="true"
+				data-cycle-slides=".ptext"
+				data-cycle-timeout="3000"
+				data-cycle-fx="carousel"
+				data-cycle-carousel-visible=""
+				data-cycle-prev=".arrow_l"
+				data-cycle-next=".arrow_r"
+				data-cycle-carousel-fluid="false"
+				data-allow-wrap="false"
+				data-cycle-speed="1000"
+				data-cycle-manual-speed="1000"
+				data-cycle-easing="easeInOutQuart"
+				>
+					<li class="ptext">01 교통특권</li>
+					<li class="ptext">02 생활특권</li>
+					<li class="ptext">03 자연특권</li>
+					<li class="ptext">04 미래특권</li>
+				</ul>
+				<img src="/gd/img/marrow_r.png" alt="" class="arrow arrow_r"/>
+			</div>
+		</div>
+	</div>
+	<div class="mloca">
+		<img src="/gd/img/mloca_text.png" alt=""/>
+		<a href="http://kko.to/LTEbW5PfB" target="_blank"><img src="/gd/img/mloca_cont.png" alt=""/></a>
+	</div>
+	<? include 'gd/inc/footer.html' ?>
+
+<script>
+$(document).ready(function() {
+
+	//
+	setTimeout( function() {$(".mimg").addClass('on');}, 1);
+	setTimeout( function() {$(".mimg .mtext").addClass('on');}, 2000);
+	setTimeout( function() {$(".mimg .open").addClass('on');}, 3000);
+
+});
+</script>
+
+
+</body>
+</html>
