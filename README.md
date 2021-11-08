@@ -1,178 +1,231 @@
-# vue-simple-context-menu
+# vue-scrollactive
 
-Simple context-menu component built for Vue. Works well with both left and right clicks. Nothing too fancy, just works and is simple to use.
+This component makes it simple to highlight a menu item with an 'active' class as you scroll.
 
-<p align="left">
-  <a href="https://www.npmjs.com/package/vue-simple-context-menu"><img src="https://img.shields.io/npm/v/vue-simple-context-menu.svg" alt="NPM Version"></a>
-  <a href="https://www.npmjs.com/package/vue-simple-context-menu"><img src="https://img.shields.io/npm/dm/vue-simple-context-menu.svg" alt="NPM Downloads"></a>
-  <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjohndatserakis%2Fvue-simple-context-menu&text=Check%20out%20vue-simple-context-menu%20on%20GitHub&via=johndatserakis">
-  <img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/vue-simple-context-menu.svg?style=social" alt="Tweet"></a>
-</p>
+- Highlights items with a class as you scroll
+- Scrolls to item's section on click
+- Configurable easing scroll effect
+- Emits events for full control
 
-### Demo
+Make sure to check the [demo](https://eddiemf.github.io/vue-scrollactive/dist) where you can play around with every option.
 
-[View demo](https://johndatserakis.github.io/vue-simple-context-menu/)
+## Installation
 
-[View on npm](https://www.npmjs.com/package/vue-simple-context-menu)
-
-[View on GitHub](https://github.com/johndatserakis/vue-simple-context-menu)
-
-### Install
-
-```
-# npm
-npm i vue-simple-context-menu
-
-# yarn
-yarn add vue-simple-context-menu
-```
-
-Or you can include it through the browser at the bottom of your page along with the css:
-
-```html
-<script src="https://unpkg.com/vue-simple-context-menu/dist/vue-simple-context-menu.min.js"></script>
-
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://unpkg.com/vue-simple-context-menu/dist/vue-simple-context-menu.css"
-/>
-```
-
-### About
-
-Just a simple little menu to be shown where a click happens - closes after use automatically by clicking an option or outside of the menu. Multiple menus are supported - just make sure to use a unique string as your `elementId` prop value.
-
-A nice feature that comes baked in is the menu placement after a click - it sits just ever so slightly under your click location - so that any hover style you had on the item that was clicked gets removed nicely. I modeled it after the macOS right click menu.
-
-### Usage Example
-
-```css
-/* css import for when you want to import the component css into your css file/files */
-@import "/path/to/node_modules/vue-simple-context-menu.css";
-```
-
-```js
-// css import for when you're importing the css directly in your js
-import "vue-simple-context-menu/dist/vue-simple-context-menu.css";
-import VueSimpleContextMenu from "vue-simple-context-menu";
-
-Vue.component("vue-simple-context-menu", VueSimpleContextMenu);
-```
-
-```html
-<!-- This is a basic use case where you have an array of items that you want
-to allow to be clicked. In this case, `items` is an array of objects.
-Each item has a click event that ties to a function. See the demo for a full example (with multiple menus as well). -->
-<div class="item-wrapper">
-  <div
-    v-for="item in items"
-    @click.prevent.stop="handleClick($event, item)"
-    class="item-wrapper__item"
-  >
-    {{item.name}}
-  </div>
-</div>
-
-<!-- Make sure you add the `ref` attribute, as that is what gives you the ability
-to open the menu. -->
-<vue-simple-context-menu
-  :elementId="'myUniqueId'"
-  :options="options"
-  :ref="'vueSimpleContextMenu'"
-  @option-clicked="optionClicked"
-/>
-```
-
-```js
-handleClick (event, item) {
-  this.$refs.vueSimpleContextMenu.showMenu(event, item)
-}
-
-
-optionClicked (event) {
-  window.alert(JSON.stringify(event))
-}
-```
-
-Note - you must pass the click event-info variable to the `showMenu()` function because that's how we know where to show the menu.
-
-Note - make sure to use `@click.prevent.stop` (or `@contextmenu.prevent.stop` for right click) when setting up the click handler.
-
-### Props
-
-| prop            | type   | description                                                                                  | required |
-| --------------- | ------ | -------------------------------------------------------------------------------------------- | -------- |
-| `elementId`     | String | Unique String that acts as the id of your menu.                                              | Yes      |
-| `options`       | Array  | Array of menu options to show. Component will use the `name` parameter as the label.         | Yes      |
-| `options.name`  | Array  | Label for the option.                                                                        | Yes      |
-| `options.class` | String | A custom class that will be applied to the option.                                           | No       |
-| `options.type`  | String | Only one possible value at the moment - `divider`. Pass this to set the object as a divider. | No       |
-| `ref`           | String | Unique String that allows you to show the menu on command.                                   | Yes      |
-
-### Methods
-
-| method     | parameters                        | description                                                          |
-| ---------- | --------------------------------- | -------------------------------------------------------------------- |
-| `showMenu` | event (MouseEvent), item (Object) | Used to show the menu. Make sure to pass a MouseEvent and an Object. |
-
-### Events
-
-| event            | value  | description                                                                                                                                                                                          |
-| ---------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `option-clicked` | Object | When a menu item is clicked the component will emit an event with a value containing the clicked item and the menu option that was clicked. Register for this event to capture the selection result. |
-| `menu-closed`    |        | Emitted when the menu is closed                                                                                                                                                                      |
-
-### SASS Structure
-
-```scss
-.vue-simple-context-menu {
-  &--active {
-  }
-
-  &__item {
-    &:hover {
-    }
-  }
-
-  &__divider {
-  }
-}
-```
-
-### Development
+Install using `yarn`
 
 ```bash
-# install dependencies
-npm install
-
-# serve with hot reload
-npm run watch
-
-# run the tests
-npm run test
-
-# build demo page
-npm run build:example
-
-# build library
-npm run build:library
-
-# build everything and run tests
-npm run build
+yarn add vue-scrollactive
 ```
 
-### Other
+or `npm`
 
-Go ahead and fork the project! Submit an issue if needed. Have fun!
+```bash
+npm install --save vue-scrollactive
+```
 
-### Thank You
+then install the plugin
 
-Influenced by [Lucas Calazans](https://codepen.io/lucascalazans)'s [pen](https://codepen.io/lucascalazans/pen/ALvVVw). Go ahead and check out his other work.
+```js
+import VueScrollactive from 'vue-scrollactive';
 
-### License
+Vue.use(VueScrollactive);
+```
 
-[MIT](http://opensource.org/licenses/MIT)
+Or if you wish to include it in a `script` tag, just download the source code from the latest release [here](https://github.com/eddiemf/vue-scrollactive/releases/latest) and include the `vue-scrollactive.min.js` file located in the `dist` folder in your page as a script:
 
-Packaged with a mixture of [vue-lib-template](https://github.com/biigpongsatorn/vue-lib-template) and [vue-sfc-rollup](https://github.com/team-innovation/vue-sfc-rollup).
+```html
+<script src="dist/vue-scrollactive.min.js"></script>
+```
+
+If you're not running any transpiler like babel, you'll most likely need to install a Promise polyfill such as [this](https://github.com/taylorhakes/promise-polyfill) to support older browsers since this library depends on promises to work.
+
+## Usage
+
+The primary way to use the plugin is to wrap your menu in a `<scrollactive>` tag (which will be your nav) and add a `.scrollactive-item` class in your `<a>` tags as I show in the example below:
+
+```html
+<scrollactive class="my-nav">
+  <a href="#home" class="scrollactive-item">Home</a>
+  <a href="#about-us" class="scrollactive-item">About Us</a>
+  <a href="#portfolio" class="scrollactive-item">Portfolio</a>
+  <a href="#contact" class="scrollactive-item">Contact</a>
+</scrollactive>
+```
+
+You can follow whatever structure you wish, just make sure to set the `.scrollactive-item` class in the items you want to highlight and set its `href` with a valid element ID that you would like to track while scrolling.
+
+The secondary way to use it is almost the same as the primary but instead of relying on `href` to find your sections you'll need to set a data attribute `data-section-selector` on your elements with the section selector you wish to have.
+
+```html
+<scrollactive class="my-nav">
+  <span data-section-selector="#home" class="scrollactive-item">Home</span>
+  <span data-section-selector=".about-us" class="scrollactive-item">About Us</span>
+  <span data-section-selector=".portfolio div span" class="scrollactive-item">Portfolio</span>
+  <span data-section-selector="#contact" class="scrollactive-item">Contact</span>
+</scrollactive>
+```
+
+As you can see this gives you more freedom to choose different tags and you can use whatever CSS selector you find necessary, but it's important to notice that `data-section-selector` takes precedence over `href`, so if you have a tag `<a href="#section-1" data-section-selector="#another-section">` it will completely ignore the `#section-1` and use `#another-section` instead.
+
+## Events
+
+Scrollactive will emit an `itemchanged(event, currentItem, lastActiveItem)` event when an active menu item is changed to another. You can catch that event doing as the example below:
+
+```html
+<scrollactive class="my-nav" v-on:itemchanged="onItemChanged">
+  <a href="#home" class="scrollactive-item">Home</a>
+  <a href="#about-us" class="scrollactive-item">About Us</a>
+  <a href="#portfolio" class="scrollactive-item">Portfolio</a>
+  <a href="#contact" class="scrollactive-item">Contact</a>
+</scrollactive>
+```
+
+```javascript
+// ...
+methods: {
+  onItemChanged(event, currentItem, lastActiveItem) {
+    // here you have access to everything you need regarding that event
+  },
+},
+// ...
+```
+
+## Configuration
+
+All options should be passed as a prop in the `<scrollactive>` component as you can see in the example below:
+
+```html
+<scrollactive active-class="active" :offset="80" :duration="800" bezier-easing-value=".5,0,.35,1">
+</scrollactive>
+```
+
+Remember that all options are optional and you can check the default values below:
+
+### Options
+
+```javascript
+/**
+ * Active class that will be applied to the active item.
+ */
+activeClass: {
+  type: String,
+  default: 'is-active',
+},
+
+/**
+ * Amount of space between top of screen and the section to highlight. (Usually your fixed
+ * header's height).
+ */
+offset: {
+  type: Number,
+  default: 20,
+},
+
+/**
+ * Amount of space between the top of the screen and the section to highlight when clicking a
+ * scrollactive item to scroll. It will use the value of the `offset` prop if none is provided
+ * here. Useful when you want to use the `offset` prop to make an item be active as soon as
+ * it shows on the screen but still scroll to the top of the section when clicking the item.
+ */
+scrollOffset: {
+  type: Number,
+  default: null,
+},
+
+/**
+ * The selector string of the scroll container element you'd like to use. It defaults to the
+ * window object (most common), but you might want to change in case you're using an element
+ * as container with overflow.
+ */
+scrollContainerSelector: {
+  type: String,
+  default: '',
+},
+
+/**
+ * Enables/disables the scrolling when clicking in a menu item.
+ * Disable if you'd like to handle the scrolling by your own.
+ */
+clickToScroll: {
+  type: Boolean,
+  default: true,
+},
+
+/**
+ * The duration of the scroll animation when clicking to scroll is activated.
+ */
+duration: {
+  type: Number,
+  default: 600,
+},
+
+/**
+ * Defines if the plugin should track the section change when clicking an item to scroll to
+ * its section. If set to true, it will always keep track and change the active class to the
+ * current section while scrolling, if false, the active class will be immediately applied to
+ * the clicked menu item, ignoring the passed sections until the scrolling is over.
+ */
+alwaysTrack: {
+  type: Boolean,
+  default: false,
+},
+
+/**
+ * Your custom easing value for the click to scroll functionality.
+ * It must be a string with 4 values separated by commas in a cubic bezier format.
+ */
+bezierEasingValue: {
+  type: String,
+  default: '.5,0,.35,1',
+},
+
+/**
+ * Decides if the URL should be modified with the section id when clicking a scrollactive
+ * item.
+ */
+modifyUrl: {
+  type: Boolean,
+  default: true,
+},
+
+/**
+ * If true the active class will only be applied when a section matches exactly one of the
+ * scrollactive items, meaning it will be highlighted when scrolling exactly inside the
+ * section. If false (default) it will always highlight the last item which was matched
+ * in a section, even if it is already outside that section (and not inside another that's
+ * being tracked).
+ */
+exact: {
+  type: Boolean,
+  default: false,
+},
+
+/**
+ * If true the active class will be applied to the first scrollactive-item before you scroll
+ * past it (even if you didn't reach it yet).
+ */
+highlightFirstItem: {
+  type: Boolean,
+  default: false,
+},
+
+/**
+ * Changes the scrollactive container component html tag.
+ */
+tag: {
+  type: String,
+  default: 'nav',
+},
+
+/**
+ * If true the screen will scroll down to the element in the URL when the component is mounted.
+ */
+scrollOnStart: {
+  type: Boolean,
+  default: true,
+},
+```
+
+## Contributing
+
+Clone the repository and install the dependencies running `yarn`. After the dependencies are installed you should be good to run `yarn start` which will load up a server with the sandbox for you to play around.
